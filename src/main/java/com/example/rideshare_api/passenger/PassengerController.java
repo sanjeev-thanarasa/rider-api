@@ -19,7 +19,7 @@ public class PassengerController {
 
   // Create
   @PostMapping
-  public Passenger create(@RequestBody Passenger body) {
+  public Passenger create(@RequestBody @jakarta.validation.Valid Passenger body) {
     return repo.save(body);
   }
 
@@ -31,7 +31,7 @@ public class PassengerController {
 
   // Edit
   @PutMapping("/{id}")
-  public Passenger edit(@PathVariable Long id, @RequestBody Passenger body) {
+  public Passenger edit(@PathVariable Long id, @RequestBody @jakarta.validation.Valid Passenger body) {
     Passenger p = repo.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     p.setName(body.getName());
     p.setPhone(body.getPhone());

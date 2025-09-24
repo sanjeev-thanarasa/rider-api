@@ -18,7 +18,7 @@ public class DriverController {
 
   // Create
   @PostMapping
-  public Driver create(@RequestBody Driver body) {
+  public Driver create(@RequestBody @jakarta.validation.Valid Driver body) {
     return repo.save(body);
   }
 
@@ -31,7 +31,7 @@ public class DriverController {
 
   // Edit
   @PutMapping("/{id}")
-  public Driver edit(@PathVariable Long id, @RequestBody Driver body) {
+  public Driver edit(@PathVariable Long id, @RequestBody @jakarta.validation.Valid Driver body) {
     Driver d = repo.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     d.setName(body.getName());
     d.setAddress(body.getAddress());
